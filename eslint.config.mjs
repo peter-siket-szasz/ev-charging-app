@@ -1,7 +1,7 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
-import stylisticJs from "@stylistic/eslint-plugin-js";
+import stylistic from "@stylistic/eslint-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,14 +14,15 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     plugins: {
-      "@stylistic/js": stylisticJs,
+      "@stylistic": stylistic,
     }
   },
   {
     rules: {
-      "@stylistic/js/indent": ["error", 2],
-      "@stylistic/js/quotes": ["error", "double"],
-      "@stylistic/js/semi": ["error", "always"],
+      "@stylistic/indent": ["error", 2],
+      "@stylistic/quotes": ["error", "double"],
+      "@stylistic/semi": ["error", "always"],
+      "@stylistic/object-curly-spacing": ["error", "always"],
     }
   }
 ];
