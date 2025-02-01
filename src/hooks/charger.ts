@@ -1,4 +1,4 @@
-import { Charger } from "@/data/types";
+import { Charger } from "@/types/data";
 import fetcher from "@/utils/fetcher";
 import useSWR from "swr";
 
