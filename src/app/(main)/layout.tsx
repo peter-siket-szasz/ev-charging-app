@@ -5,9 +5,9 @@ import { Box } from "@mui/material";
 
 export default function Layout({ children }: ChildrenType) {
   return (
-    <Box>
+    <Box height="100vh" display="flex" flexDirection="column">
       <ResponsiveAppBar />
-      <Box paddingTop={2} paddingX={2}>
+      <Box margin={2} flexGrow={1}>
         {children}
       </Box>
     </Box>

@@ -40,7 +40,7 @@ export default function ChargerCard({ charger }: ChargerCardProps) {
         </Typography>
 
         <Box display="flex" alignItems="center" gap={1} mt={1}>
-          <Rating defaultValue={charger.rating} precision={0.1} />
+          <Rating defaultValue={charger.rating} precision={0.1} readOnly />
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {charger.rating.toPrecision(2)}
           </Typography>

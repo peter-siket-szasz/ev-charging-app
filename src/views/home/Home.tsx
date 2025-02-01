@@ -1,14 +1,27 @@
 "use client";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import { useChargers } from "../../hooks/charger";
 import ChargerGrid from "@/views/home/components/ChargerGrid";
 import HeaderBar from "./components/HeaderBar";
+import { useQueryState } from "nuqs";
 
 export default function Home() {
-  const { data, error, isLoading } = useChargers();
+  const [sort] = useQueryState("sort", { defaultValue: "" });
+  const { data, error, isLoading } = useChargers({ sort });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+        height="100%"
+      >
+        <CircularProgress />
+        Loading...
+      </Box>
+    );
   }
   if (error) {
     return <div>Error: {error.message}</div>;
