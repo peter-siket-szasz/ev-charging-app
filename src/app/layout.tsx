@@ -6,6 +6,7 @@ import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
 import { MSWProvider } from "../mocks/msw-provider";
+import { NuqsAdapter } from "nuqs/adapters/next";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -25,7 +26,6 @@ if (process.env.NEXT_RUNTIME === "nodejs") {
   server.listen();
 }
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -33,13 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${roboto.variable} antialiased`}
-      >
+      <body className={`${roboto.variable} antialiased`}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
             <MSWProvider>
-              {children}
+              <NuqsAdapter>{children}</NuqsAdapter>
             </MSWProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>

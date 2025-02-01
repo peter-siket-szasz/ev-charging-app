@@ -11,5 +11,5 @@ export const handlers = [
     const station = data.find((station) => `${station.id}` === id);
 
     return HttpResponse.json(station);
-  })
+  }),
 ];
