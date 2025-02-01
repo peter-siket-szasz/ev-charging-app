@@ -2,7 +2,7 @@ export type Charger = {
   id: number;
   name: string;
   location: string;
-  power: number;
+  power: string;
   price_per_kWh: string;
   rating: number;
   available_slots: number;

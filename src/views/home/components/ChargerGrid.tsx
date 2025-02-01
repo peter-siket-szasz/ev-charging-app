@@ -8,7 +8,7 @@ type ChargerGridProps = {
 
 export default function ChargerGrid({ chargers }: ChargerGridProps) {
   return (
-    <Box display={"flex"} flexDirection={"row"} flexWrap={"wrap"} gap={1}>
+    <Box display="flex" flexDirection="row" flexWrap="wrap" gap={1}>
       {chargers?.map((charger) => (
         <ChargerCard key={charger.id} charger={charger} />
       ))}
