@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Sorting from "./Sorting";
+import Filtering from "./Filtering";
 
 export default function HeaderBar() {
   return (
@@ -9,11 +10,7 @@ export default function HeaderBar() {
       </Typography>
       <Box display="flex" gap={2}>
         <Sorting />
-        <Box>
-          <Typography variant="h6" component="h2">
-            Filter:{" "}
-          </Typography>
-        </Box>
+        <Filtering />
       </Box>
     </Box>
   );

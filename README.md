@@ -41,3 +41,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - npx msw init public
 
 todos: convert chargers to json from js
+
+improvements: filter chips for active values

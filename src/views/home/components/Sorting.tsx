@@ -1,4 +1,5 @@
 "use client";
+import { SORT } from "@/types/enums";
 import {
   ArrowDownward,
   ArrowUpward,
@@ -19,20 +20,30 @@ import { useQueryState } from "nuqs";
 import { JSX } from "react";
 
 type RatingOption = {
-  value: string;
+  value: SORT;
   label: string;
   icon?: JSX.Element | string;
   isAscending?: boolean;
 };
 
 const ratingOptions: RatingOption[] = [
-  { value: "rating_desc", label: "Rating", icon: <Star /> },
-  { value: "rating_asc", label: "Rating", icon: <Star />, isAscending: true },
-  { value: "price_desc", label: "Price", icon: <Euro /> },
-  { value: "price_asc", label: "Price", icon: <Euro />, isAscending: true },
-  { value: "power_desc", label: "Power", icon: <ElectricCarSharp /> },
+  { value: SORT.SORT_RATING_DESC, label: "Rating", icon: <Star /> },
   {
-    value: "power_asc",
+    value: SORT.SORT_RATING_ASC,
+    label: "Rating",
+    icon: <Star />,
+    isAscending: true,
+  },
+  { value: SORT.SORT_PRICE_DESC, label: "Price", icon: <Euro /> },
+  {
+    value: SORT.SORT_PRICE_ASC,
+    label: "Price",
+    icon: <Euro />,
+    isAscending: true,
+  },
+  { value: SORT.SORT_POWER_DESC, label: "Power", icon: <ElectricCarSharp /> },
+  {
+    value: SORT.SORT_POWER_ASC,
     label: "Power",
     icon: <ElectricCarSharp />,
     isAscending: true,
@@ -40,7 +51,9 @@ const ratingOptions: RatingOption[] = [
 ];
 
 export default function Sorting() {
-  const [sort, setSort] = useQueryState("sort", { defaultValue: "" });
+  const [sort, setSort] = useQueryState("sort", {
+    defaultValue: "",
+  });
 
   return (
     <Box display="flex" gap={2} alignItems="center">

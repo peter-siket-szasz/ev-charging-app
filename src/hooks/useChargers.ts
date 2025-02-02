@@ -2,24 +2,21 @@ import { Charger } from "@/types/data";
 import fetcher from "@/utils/fetcher";
 import useSWR from "swr";
 
-export function useChargers(query: Record<string, string>) {
-  const queryParams = new URLSearchParams(query);
-
+export function useChargers(searchParams: URLSearchParams) {
   // Delete empty params as empty strings are default values for undefined query params
   const keysToDelete: string[] = [];
-  for (const [key, value] of queryParams.entries()) {
+  for (const [key, value] of searchParams.entries()) {
     if (value === "") {
       keysToDelete.push(key);
     }
   }
   keysToDelete.forEach((key) => {
-    queryParams.delete(key);
+    searchParams.delete(key);
   });
 
   const { data, error, isLoading } = useSWR<Charger[]>(
-    `/api/stations?${queryParams.toString()}`,
+    `/api/stations?${searchParams.toString()}`,
     fetcher,
-    { refreshInterval: 1000 },
   );
 
   return {
