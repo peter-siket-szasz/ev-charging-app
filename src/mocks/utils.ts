@@ -25,16 +25,14 @@ export function sortChargers(chargers: Charger[], sort: SORT) {
 export function filterChargers(chargers: Charger[], query: URLSearchParams) {
   const powerStart = query.get(QUERY_PARAMS.POWER_START);
   const powerEnd = query.get(QUERY_PARAMS.POWER_END);
+  const priceStart = query.get(QUERY_PARAMS.PRICE_START);
+  const priceEnd = query.get(QUERY_PARAMS.PRICE_END);
 
-  return chargers.filter((charger) => {
-    if (powerStart && charger.power < parseInt(powerStart)) {
-      return false;
-    }
-
-    if (powerEnd && charger.power > parseInt(powerEnd)) {
-      return false;
-    }
-
-    return true;
-  });
+  return chargers.filter(
+    (charger) =>
+      !(powerStart && charger.power < Number(powerStart)) &&
+      !(powerEnd && charger.power > Number(powerEnd)) &&
+      !(priceStart && charger.price_per_kWh < Number(priceStart)) &&
+      !(priceEnd && charger.price_per_kWh > Number(priceEnd)),
+  );
 }

@@ -42,4 +42,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 todos: convert chargers to json from js
 
-improvements: filter chips for active values
+improvements:
+- filter chips for active values
+- refactor filters
+- dark mode
+
+missing: 
+- sort based on distance
+- filter based on availability

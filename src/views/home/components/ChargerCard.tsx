@@ -36,7 +36,7 @@ export default function ChargerCard({ charger }: ChargerCardProps) {
         </Typography>
 
         <Typography variant="body2">
-          Price: {charger.price_per_kWh}/kWh
+          Price: {charger.price_per_kWh} PLN/kWh
         </Typography>
 
         <Box display="flex" alignItems="center" gap={1} mt={1}>

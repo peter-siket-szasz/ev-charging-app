@@ -11,4 +11,6 @@ export enum QUERY_PARAMS {
   SORT = "sort",
   POWER_START = "powerStart",
   POWER_END = "powerEnd",
+  PRICE_START = "priceStart",
+  PRICE_END = "priceEnd",
 }
