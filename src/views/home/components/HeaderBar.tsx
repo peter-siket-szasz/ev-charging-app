@@ -4,7 +4,12 @@ import Filtering from "./Filtering";
 
 export default function HeaderBar() {
   return (
-    <Box display="flex" flexDirection="row" justifyContent="space-between">
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", sm: "row" }}
+      justifyContent="space-between"
+      gap={2}
+    >
       <Typography variant="h3" component="h1">
         Charging stations
       </Typography>
