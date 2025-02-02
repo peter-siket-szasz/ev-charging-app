@@ -32,7 +32,7 @@ export default function ChargerCard({ charger }: ChargerCardProps) {
         </Typography>
 
         <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-          Power: {charger.power}
+          Power: {charger.power} kW
         </Typography>
 
         <Typography variant="body2">

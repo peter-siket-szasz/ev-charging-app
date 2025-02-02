@@ -46,9 +46,8 @@ export default function Sorting() {
     <Box display="flex" gap={2} alignItems="center">
       <Button
         variant="text"
-        sx={{ p: 0.5, minWidth: 0 }}
+        sx={{ p: 0.5, minWidth: 0, display: sort ? "block" : "none" }}
         onClick={() => setSort("")}
-        disabled={!sort}
       >
         <ClearIcon sx={{ color: sort ? "red" : "gray" }} />
       </Button>

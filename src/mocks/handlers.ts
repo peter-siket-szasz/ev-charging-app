@@ -1,44 +1,42 @@
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
 import data from "../data/Chargers";
+import { parseCharger } from "@/data/parseCharger";
+
+const chargers = data.map(parseCharger);
 
 export const handlers = [
-  http.get("/api/stations", ({ request }) => {
+  http.get("/api/stations", async ({ request }) => {
     const url = new URL(request.url);
 
     const sort = url.searchParams.get("sort");
 
     switch (sort) {
       case "rating_asc":
-        data.sort((a, b) => a.rating - b.rating);
+        chargers.sort((a, b) => a.rating - b.rating);
         break;
       case "rating_desc":
-        data.sort((a, b) => b.rating - a.rating);
+        chargers.sort((a, b) => b.rating - a.rating);
         break;
       case "price_asc":
-        data.sort(
-          (a, b) =>
-            +a.price_per_kWh.split(" ")[0] - +b.price_per_kWh.split(" ")[0],
-        );
+        chargers.sort((a, b) => a.price_per_kWh - b.price_per_kWh);
         break;
       case "price_desc":
-        data.sort(
-          (a, b) =>
-            +b.price_per_kWh.split(" ")[0] - +a.price_per_kWh.split(" ")[0],
-        );
+        chargers.sort((a, b) => b.price_per_kWh - a.price_per_kWh);
         break;
       case "power_asc":
-        data.sort((a, b) => +a.power.split(" ")[0] - +b.power.split(" ")[0]);
+        chargers.sort((a, b) => a.power - b.power);
         break;
       case "power_desc":
-        data.sort((a, b) => +b.power.split(" ")[0] - +a.power.split(" ")[0]);
+        chargers.sort((a, b) => b.power - a.power);
     }
+    await delay();
 
-    return HttpResponse.json(data);
+    return HttpResponse.json(chargers);
   }),
 
   http.get("/api/stations/:id", ({ params }) => {
     const { id } = params;
-    const station = data.find((station) => `${station.id}` === id);
+    const station = chargers.find((station) => `${station.id}` === id);
 
     return HttpResponse.json(station);
   }),

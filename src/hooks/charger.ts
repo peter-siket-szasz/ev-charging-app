@@ -19,6 +19,7 @@ export function useChargers(query: Record<string, string>) {
   const { data, error, isLoading } = useSWR<Charger[]>(
     `/api/stations?${queryParams.toString()}`,
     fetcher,
+    { refreshInterval: 1000 },
   );
 
   return {
