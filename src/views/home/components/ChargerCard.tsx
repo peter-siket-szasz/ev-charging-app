@@ -2,13 +2,14 @@ import { Charger } from "@/types/data";
 import { ArrowRight } from "@mui/icons-material";
 import {
   Box,
-  Button,
   Card,
   CardActions,
   CardContent,
   Rating,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
+import MuiLink from "@mui/material/Link";
 
 type ChargerCardProps = {
   charger: Charger;
@@ -46,10 +47,14 @@ export default function ChargerCard({ charger }: ChargerCardProps) {
           </Typography>
         </Box>
       </CardContent>
-      <CardActions>
-        <Button size="small">
-          Details <ArrowRight />
-        </Button>
+      <CardActions sx={{ alignContent: "center" }}>
+        <Link href={`${charger.id}`} style={{ textDecoration: "none" }}>
+          <MuiLink component="div" variant="subtitle2" underline="hover">
+            <Box display="flex" justifyContent="flex-end" alignItems="center">
+              Details <ArrowRight />
+            </Box>
+          </MuiLink>
+        </Link>
       </CardActions>
     </Card>
   );

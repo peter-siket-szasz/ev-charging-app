@@ -9,5 +9,5 @@ export type Charger = {
   connectors: string[];
   fast_charging: boolean;
   open_hours: number[];
-  suppoerted_vehicles: string[];
+  supported_vehicles: string[];
 };

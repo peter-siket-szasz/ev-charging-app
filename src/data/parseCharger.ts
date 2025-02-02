@@ -19,6 +19,6 @@ export function parseCharger(data: any): Charger {
         : data["open_hours"]
             .split("-")
             .map((time: string) => Number(time.split(":")[0])),
-    suppoerted_vehicles: data["suppoerted_vehicles"],
+    supported_vehicles: data["suppoerted_vehicles"],
   };
 }
