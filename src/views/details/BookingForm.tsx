@@ -2,13 +2,23 @@ import { useBooking } from "@/hooks/useBooking";
 import { Charger } from "@/types/data";
 import { Booking } from "@/types/store";
 import { numberToHourFormat } from "@/utils/utils";
-import { Box, Button, Chip, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Chip,
+  CircularProgress,
+  Snackbar,
+  SnackbarContent,
+  Typography,
+} from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { isBookedAt, isBookedBetween, isOpenAt, isSelectedTime } from "./utils";
 import Legend from "./Legend";
+import { useDisclosure } from "@/hooks/useDisclosure";
+import { CheckCircleRounded } from "@mui/icons-material";
 
 type BookingFormProps = {
   charger: Charger;
@@ -20,10 +30,15 @@ export default function BookingForm({ charger }: BookingFormProps) {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [endTime, setEndTime] = useState<number | null>(null);
 
+  const { isOpen, open, close } = useDisclosure();
+  const [requestLoading, setRequestLoading] = useState(false);
   const openHours = charger.open_hours;
-  const bookings: Booking[] = useBooking((state) =>
-    state.getBookings(charger.id),
-  ) || [{ date: "asd", startTime: 8, endTime: 10 }];
+
+  const addBooking = useBooking((state) => state.addBooking);
+
+  const bookings: Booking[] = useBooking((state) => state.bookings).filter(
+    (b) => b.id === charger.id && b.date === date?.format("YYYY-MM-DD"),
+  );
 
   const handleChipClick = (hour: number) => {
     // Set start time in empty state
@@ -50,6 +65,33 @@ export default function BookingForm({ charger }: BookingFormProps) {
     }
   })();
 
+  const handleBookingClick = async () => {
+    const booking: Booking = {
+      id: charger.id,
+      date: date!.format("YYYY-MM-DD"),
+      startTime: startTime!,
+      endTime: endTime || startTime!, // if no end time, set to start time
+    };
+    setRequestLoading(true);
+    try {
+      const response = await fetch("/api/create-booking", {
+        method: "POST",
+        body: JSON.stringify(booking),
+      });
+      // const result = await response.json();
+      if (response.ok) {
+        addBooking(booking);
+        open();
+        setStartTime(null);
+        setEndTime(null);
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+    } finally {
+      setRequestLoading(false);
+    }
+  };
+
   return (
     <Box
       display="flex"
@@ -58,12 +100,29 @@ export default function BookingForm({ charger }: BookingFormProps) {
       gap={2}
       maxWidth={300}
     >
+      <Snackbar
+        open={isOpen}
+        onClose={close}
+        autoHideDuration={4000}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <SnackbarContent
+          sx={{ backgroundColor: "success.light" }}
+          message={
+            <Box display="flex" gap={1} alignItems="center">
+              <CheckCircleRounded />
+              Booking successful!
+            </Box>
+          }
+        />
+      </Snackbar>
       <Typography variant="h4" component="h2">
         Booking form
       </Typography>
       <Legend />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
+          disablePast
           value={date}
           onChange={(newDate) => setDate(newDate)}
           label="Select booking date"
@@ -96,9 +155,17 @@ export default function BookingForm({ charger }: BookingFormProps) {
       <Typography variant="body2" minHeight={40}>
         {instruction}
       </Typography>
-      <Button variant="contained" disabled={!startTime}>
-        Book
-      </Button>
+      {requestLoading ? (
+        <CircularProgress />
+      ) : (
+        <Button
+          variant="contained"
+          disabled={!startTime}
+          onClick={handleBookingClick}
+        >
+          Book
+        </Button>
+      )}
     </Box>
   );
 }

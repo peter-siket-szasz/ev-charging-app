@@ -1,4 +1,5 @@
 export type Booking = {
+  id: number;
   date: string;
   startTime: number;
   endTime: number;
@@ -10,7 +11,6 @@ export type ChargerBooking = {
 };
 
 export type BookingStore = {
-  chargers: ChargerBooking[];
-  addBooking: (chargerId: number, booking: Booking) => void;
-  getBookings: (chargerId: number) => Booking[] | undefined;
+  bookings: Booking[];
+  addBooking: (booking: Booking) => void;
 };

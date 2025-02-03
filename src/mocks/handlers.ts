@@ -1,4 +1,4 @@
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
 import data from "../data/Chargers";
 import { parseCharger } from "@/data/parseCharger";
 import { filterChargers, sortChargers } from "./utils";
@@ -23,5 +23,11 @@ export const handlers = [
     const station = chargers.find((station) => `${station.id}` === id);
 
     return HttpResponse.json(station);
+  }),
+
+  http.post("/api/create-booking", async ({ request }) => {
+    const booking = await request.json();
+    await delay();
+    return HttpResponse.json(booking, { status: 201 });
   }),
 ];

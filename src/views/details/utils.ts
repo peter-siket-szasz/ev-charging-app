@@ -6,7 +6,7 @@ export function isOpenAt(hour: number, openHours: number[]) {
 
 export function isBookedAt(hour: number, bookings: Booking[]) {
   return bookings.some(
-    (booking) => booking.startTime <= hour && booking.endTime > hour,
+    (booking) => booking.startTime <= hour && booking.endTime >= hour,
   );
 }
 
