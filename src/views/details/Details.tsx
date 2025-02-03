@@ -1,6 +1,6 @@
 "use client";
 import { useCharger } from "@/hooks/useChargers";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Container } from "@mui/material";
 import InfoGrid from "./InfoGrid";
 import BookingForm from "./BookingForm";
 import Link from "next/link";
@@ -14,7 +14,7 @@ type DetailsProps = {
 export default function Details({ id }: DetailsProps) {
   const { data: charger, isLoading, error } = useCharger(id);
   return (
-    <Box>
+    <Container>
       {isLoading && <CircularProgress />}
       {error && <div>Error: {error.message}</div>}
       {charger && (
@@ -26,25 +26,17 @@ export default function Details({ id }: DetailsProps) {
               </Box>
             </MuiLink>
           </Link>
-          <Typography variant="h3" component="h1">
-            {charger.name}
-          </Typography>
           <Box
             display="flex"
-            flexDirection={{ xs: "column", lg: "row" }}
+            flexDirection={{ xs: "column", sm: "row" }}
+            justifyContent="start"
             gap={2}
           >
-            <Box
-              display="flex"
-              flexDirection={{ xs: "column", md: "row" }}
-              gap={2}
-            >
-              <InfoGrid charger={charger} />
-              <BookingForm charger={charger} />
-            </Box>
+            <InfoGrid charger={charger} />
+            <BookingForm charger={charger} />
           </Box>
         </Box>
       )}
-    </Box>
+    </Container>
   );
 }

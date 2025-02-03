@@ -10,6 +10,7 @@ export default function Layout({ children }: ChildrenType) {
       <Box margin={2} flexGrow={1}>
         {children}
       </Box>
+      <Box pt={2} />
     </Box>
   );
 }

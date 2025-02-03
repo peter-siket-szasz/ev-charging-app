@@ -26,5 +26,8 @@ export function isSelectedTime(
   start: number | null,
   end: number | null,
 ) {
-  return start === hour || (start && end && hour >= start && hour <= end);
+  return (
+    start === hour ||
+    (start !== null && end !== null && hour >= start && hour <= end)
+  );
 }

@@ -56,11 +56,11 @@ export default function BookingForm({ charger }: BookingFormProps) {
 
   const instruction = (() => {
     switch (true) {
-      case !startTime && !endTime:
+      case startTime === null && endTime === null:
         return "Select starting time";
-      case startTime && !endTime:
+      case startTime !== null && endTime === null:
         return "Select ending time out of the available slots or confirm booking for 1 hour";
-      case !!startTime && !!endTime:
+      case startTime !== null && endTime !== null:
         return "Confirm booking";
     }
   })();
@@ -160,7 +160,7 @@ export default function BookingForm({ charger }: BookingFormProps) {
       ) : (
         <Button
           variant="contained"
-          disabled={!startTime}
+          disabled={startTime === null}
           onClick={handleBookingClick}
         >
           Book
