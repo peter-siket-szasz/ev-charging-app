@@ -2,7 +2,7 @@ import { Charger } from "@/types/data";
 import { QUERY_PARAMS, SORT } from "@/types/enums";
 
 export function sortChargers(chargers: Charger[], sort: SORT) {
-  return chargers.sort((a, b) => {
+  return chargers.toSorted((a, b) => {
     switch (sort) {
       case SORT.SORT_RATING_DESC:
         return b.rating - a.rating;
