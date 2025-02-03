@@ -24,8 +24,14 @@ export default function Details({ id }: DetailsProps) {
             flexDirection={{ xs: "column", lg: "row" }}
             gap={2}
           >
-            <InfoGrid charger={charger} />
-            <BookingForm charger={charger} />
+            <Box
+              display="flex"
+              flexDirection={{ xs: "column", md: "row" }}
+              gap={2}
+            >
+              <InfoGrid charger={charger} />
+              <BookingForm charger={charger} />
+            </Box>
           </Box>
         </Box>
       )}

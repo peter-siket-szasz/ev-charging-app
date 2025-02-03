@@ -6,17 +6,17 @@ export const useBooking = create<BookingStore>((set, get) => ({
 
   addBooking: (chargerId: number, booking: Booking) => {
     // Find correct charger
-    const chargers = get().chargers;
-    const charger = chargers.find((c) => c.id === chargerId);
+    const state = get();
+    const charger = state.chargers.find((c) => c.id === chargerId);
 
     // If charger doesn't exist, add it
     if (!charger) {
-      set({ chargers: [...chargers, { id: chargerId, bookings: [] }] });
+      set({ chargers: [...state.chargers, { id: chargerId, bookings: [] }] });
     }
 
     // Add booking to charger
     set({
-      chargers: chargers.map((c) =>
+      chargers: state.chargers.map((c) =>
         c.id === chargerId
           ? { id: c.id, bookings: [...c.bookings, booking] }
           : c,
@@ -25,7 +25,8 @@ export const useBooking = create<BookingStore>((set, get) => ({
   },
 
   getBookings: (chargerId: number) => {
-    const charger = get().chargers.find((c) => c.id === chargerId);
-    return charger ? charger.bookings : [];
+    const state = get();
+    const charger = state.chargers.find((c) => c.id === chargerId);
+    return charger?.bookings;
   },
 }));

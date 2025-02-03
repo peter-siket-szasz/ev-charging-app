@@ -11,4 +11,6 @@ export type ChargerBooking = {
 
 export type BookingStore = {
   chargers: ChargerBooking[];
+  addBooking: (chargerId: number, booking: Booking) => void;
+  getBookings: (chargerId: number) => Booking[] | undefined;
 };
