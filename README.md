@@ -50,3 +50,4 @@ improvements:
 missing: 
 - sort based on distance
 - filter based on availability
+- error handling
