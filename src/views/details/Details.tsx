@@ -2,6 +2,7 @@
 import { useCharger } from "@/hooks/useChargers";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import InfoGrid from "./InfoGrid";
+import BookingForm from "./BookingForm";
 
 type DetailsProps = {
   id: number;
@@ -18,7 +19,14 @@ export default function Details({ id }: DetailsProps) {
           <Typography variant="h3" component="h1">
             {charger.name}
           </Typography>
-          <InfoGrid charger={charger} />
+          <Box
+            display="flex"
+            flexDirection={{ xs: "column", lg: "row" }}
+            gap={2}
+          >
+            <InfoGrid charger={charger} />
+            <BookingForm charger={charger} />
+          </Box>
         </Box>
       )}
     </Box>
