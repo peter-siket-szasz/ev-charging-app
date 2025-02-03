@@ -23,7 +23,12 @@ const fields: FieldDefinition[] = [
 
 export default function InfoGrid({ charger }: InfoGridProps) {
   return (
-    <Grid container spacing={{ xs: 1, md: 3 }} columns={{ xs: 1, md: 2 }}>
+    <Grid
+      container
+      spacing={{ xs: 1, md: 3 }}
+      columns={{ xs: 1, md: 2 }}
+      height="fit-content"
+    >
       {fields.map((field) => (
         <Fragment key={field.key}>
           <Grid size={1}>
