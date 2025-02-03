@@ -19,7 +19,10 @@ export default function Details({ id }: DetailsProps) {
       {error && <div>Error: {error.message}</div>}
       {charger && (
         <Box display="flex" flexDirection="column" gap={2}>
-          <Link href="/" style={{ textDecoration: "none" }}>
+          <Link
+            href="/"
+            style={{ textDecoration: "none", width: "fit-content" }}
+          >
             <MuiLink component="div" variant="subtitle2" underline="hover">
               <Box display="flex" justifyContent="baseline" alignItems="center">
                 <ArrowLeft /> Back
