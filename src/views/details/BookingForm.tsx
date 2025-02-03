@@ -78,9 +78,9 @@ export default function BookingForm({ charger }: BookingFormProps) {
         method: "POST",
         body: JSON.stringify(booking),
       });
-      // const result = await response.json();
+      const result = await response.json();
       if (response.ok) {
-        addBooking(booking);
+        addBooking(result);
         open();
         setStartTime(null);
         setEndTime(null);
