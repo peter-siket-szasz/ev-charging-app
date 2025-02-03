@@ -21,7 +21,6 @@ type FieldDefinition = {
 };
 
 const fields: FieldDefinition[] = [
-  { label: "Location", key: "location" },
   { label: "Connectors", key: "connectors", isArray: true },
   { label: "Power", key: "power", suffix: "kW" },
   { label: "Price", key: "price_per_kWh", suffix: " PLN/kWh" },
