@@ -27,27 +27,27 @@ type RatingOption = {
 };
 
 const ratingOptions: RatingOption[] = [
-  { value: SORT.SORT_RATING_DESC, label: "Rating", icon: <Star /> },
   {
     value: SORT.SORT_RATING_ASC,
     label: "Rating",
     icon: <Star />,
     isAscending: true,
   },
-  { value: SORT.SORT_PRICE_DESC, label: "Price", icon: <Euro /> },
+  { value: SORT.SORT_RATING_DESC, label: "Rating", icon: <Star /> },
   {
     value: SORT.SORT_PRICE_ASC,
     label: "Price",
     icon: <Euro />,
     isAscending: true,
   },
-  { value: SORT.SORT_POWER_DESC, label: "Power", icon: <ElectricCarSharp /> },
+  { value: SORT.SORT_PRICE_DESC, label: "Price", icon: <Euro /> },
   {
     value: SORT.SORT_POWER_ASC,
     label: "Power",
     icon: <ElectricCarSharp />,
     isAscending: true,
   },
+  { value: SORT.SORT_POWER_DESC, label: "Power", icon: <ElectricCarSharp /> },
 ];
 
 export default function Sorting() {
@@ -79,9 +79,9 @@ export default function Sorting() {
                 {option.icon}
                 {option.label}
                 {option.isAscending ? (
-                  <ArrowDownward sx={{ ml: "auto" }} />
-                ) : (
                   <ArrowUpward sx={{ ml: "auto" }} />
+                ) : (
+                  <ArrowDownward sx={{ ml: "auto" }} />
                 )}
               </Box>
             </MenuItem>

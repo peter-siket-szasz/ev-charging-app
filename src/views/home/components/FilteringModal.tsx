@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import { parseAsFloat, parseAsInteger, useQueryState } from "nuqs";
+import { useCallback } from "react";
 
 type FilteringModalProps = {
   isOpen: boolean;
@@ -46,9 +47,12 @@ export default function FilteringModal({ isOpen, close }: FilteringModalProps) {
       .withDefault(MAX_PRICE)
       .withOptions({ shallow: false, throttleMs: SLIDER_THROTTLE_MS }),
   );
-  const handleChange = (newValue: number, setter: (value: number) => void) => {
-    setter(newValue);
-  };
+  const handleChange = useCallback(
+    (newValue: number, setter: (value: number) => void) => {
+      setter(newValue);
+    },
+    [],
+  );
 
   return (
     <Modal open={isOpen} onClose={close} aria-labelledby="modal-modal-title">

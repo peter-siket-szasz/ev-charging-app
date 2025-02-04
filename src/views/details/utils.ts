@@ -31,3 +31,7 @@ export function isSelectedTime(
     (start !== null && end !== null && hour >= start && hour <= end)
   );
 }
+
+export function numberToHourFormat(num: number): string {
+  return `${num.toString().padStart(2, "0")}:00`;
+}

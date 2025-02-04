@@ -6,7 +6,7 @@ export default function HeaderBar() {
   return (
     <Box
       display="flex"
-      flexDirection={{ xs: "column", sm: "row" }}
+      flexDirection={{ xs: "column", md: "row" }}
       justifyContent="space-between"
       gap={2}
     >

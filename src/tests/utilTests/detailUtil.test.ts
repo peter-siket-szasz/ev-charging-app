@@ -4,6 +4,7 @@ import {
   isBookedBetween,
   isOpenAt,
   isSelectedTime,
+  numberToHourFormat,
 } from "@/views/details/utils";
 import { describe, expect, it } from "vitest";
 
@@ -67,6 +68,14 @@ describe("detailUtils", () => {
       expect(isSelectedTime(0, 1, 3)).toBe(false);
       expect(isSelectedTime(4, 1, 3)).toBe(false);
       expect(isSelectedTime(16, 1, 3)).toBe(false);
+    });
+  });
+
+  describe("numberToHourFormat", () => {
+    it("should convert a number to a string in hour format", () => {
+      expect(numberToHourFormat(1)).toBe("01:00");
+      expect(numberToHourFormat(5)).toBe("05:00");
+      expect(numberToHourFormat(18)).toBe("18:00");
     });
   });
 });
