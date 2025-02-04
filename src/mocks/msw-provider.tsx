@@ -1,6 +1,8 @@
 /* eslint-disable @stylistic/indent */
 "use client";
 
+// This file is from the MSW examples with Next and App router
+// https://github.com/mswjs/examples/pull/101/files
 import { Suspense, use } from "react";
 import { handlers } from "@/mocks/handlers";
 

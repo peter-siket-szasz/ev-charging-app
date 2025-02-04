@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// Custom hook for managing the state of a modal or dialog
 export function useDisclosure() {
   const [isOpen, setIsOpen] = useState(false);
 
