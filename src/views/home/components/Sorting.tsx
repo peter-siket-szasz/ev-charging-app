@@ -57,13 +57,15 @@ export default function Sorting() {
 
   return (
     <Box display="flex" gap={2} alignItems="center">
-      <Button
-        variant="text"
-        sx={{ p: 0.5, minWidth: 0, display: sort ? "block" : "none" }}
-        onClick={() => setSort("")}
-      >
-        <ClearIcon sx={{ color: sort ? "red" : "gray" }} />
-      </Button>
+      {sort && (
+        <Button
+          variant="text"
+          sx={{ p: 0.5, minWidth: 0 }}
+          onClick={() => setSort("")}
+        >
+          <ClearIcon color="error" />
+        </Button>
+      )}
       <FormControl fullWidth sx={{ minWidth: 100 }}>
         <InputLabel id="sort">Sort by</InputLabel>
         <Select
